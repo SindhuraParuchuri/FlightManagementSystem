@@ -1,0 +1,16 @@
+create table user(userid int(10) primary key auto_increment,username varchar(30),password varchar(30),mobileno int(10),emailid varchar(30));
+
+
+create table passenger(pnr_no int(10) auto_increment primary key,passenger_name varchar(30),passenger_age int(10),aadhar int(10),luggage double(5,3),userid int(10),foreign key(userid) references user(userid));
+
+
+create table flight(flight_number int(10) auto_increment primary key,flight_model varchar(30),carrier_name varchar(30),seat_capacity int(10),flight_state varchar(30));
+
+
+create table airport(airport_code varchar(30),airport_name varchar(30),airport_location varchar(30));
+
+
+ create table scheduleflight(flight_number int(10) ,available_seats int(10),cost double(5,2),source_airport varchar(30),destination_airport varchar(30),departure_datetime DATE,arrival_datetime date,schedule_flightstatus varchar(30),foreign key(flight_number) references flight(flight_number));
+
+
+ create table booking(booking_id int(10) auto_increment primary key,userid int(10),booking_date date,cost double(5,2),passenger_count int(10),booking_state varchar(30),flight_number int(10),foreign key(userid) references user(userid),foreign key(flight_number) references flight(flight_number));
